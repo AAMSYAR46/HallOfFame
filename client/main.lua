@@ -3,7 +3,10 @@ Citizen.CreateThread(function()
 		if Config.Npc ~= nil then 
 			local x,y,z = table.unpack(v.coords)
 
-			lib.requestModel(v.NPC.Model)
+			RequestModel(v.NPC.Model)
+			while not HasModelLoaded(v.NPC.Model) do
+				Wait(10)
+			end
 
 			local playerPed = CreatePed(4, v.NPC.Model, x, y, z - 1.0, v.NPC.heading, false, true)
 
